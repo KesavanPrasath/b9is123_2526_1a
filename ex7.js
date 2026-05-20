@@ -1,19 +1,77 @@
-// create a web component to achieve a task of your choice.
+const template = document.createElement('template');
+template.innerHTML = `
+  <style>
+  .user-card {
+		font-family: 'Arial', sans-serif;
+		background: #f4f4f4;
+		width: 500px;
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		grid-gap: 10px;
+		margin-bottom: 15px;
+		border-bottom: darkorchid 5px solid;
+	}
 
-//example at https://jsfiddle.net/lairdp/o475u9zL
+	.user-card img {
+		width: 100%;
+	}
 
-<click-counter></click-counter>
+	.user-card button {
+		cursor: pointer;
+		background: darkorchid;
+		color: #fff;
+		border: 0;
+		border-radius: 5px;
+		padding: 5px 10px;
+	}
+  </style>
+  <div class="user-card">
+    <img />
+    <div>
+      <h3></h3>
+      <div class="info">
+        <p><slot name="email" /></p>
+        <p><slot name="phone" /></p>
+      </div>
+      <button id="toggle-info">Hide Info</button>
+    </div>
+  </div>
+`;
 
-<script>
-class ClickCounter extends HTMLElement {
+class UserCard extends HTMLElement {
+  constructor() {
+    super();
+
+    this.showInfo = true;
+
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
+    this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');
+  }
+
+  toggleInfo() {
+    this.showInfo = !this.showInfo;
+
+    const info = this.shadowRoot.querySelector('.info');
+    const toggleBtn = this.shadowRoot.querySelector('#toggle-info');
+
+    if(this.showInfo) {
+      info.style.display = 'block';
+      toggleBtn.innerText = 'Hide Info';
+    } else {
+      info.style.display = 'none';
+      toggleBtn.innerText = 'Show Info';
+    }
+  }
+
   connectedCallback() {
-    this._n = 0;
-    this.innerHTML = `<button>Clicked 0 times</button>`;
-    this.querySelector('button').addEventListener('click', () => {
-      this._n++;
-      this.querySelector('button').textContent = `Clicked ${this._n} times`;
-    });
+    this.shadowRoot.querySelector('#toggle-info').addEventListener('click', () => this.toggleInfo());
+  }
+
+  disconnectedCallback() {
+    this.shadowRoot.querySelector('#toggle-info').removeEventListener();
   }
 }
-customElements.define('click-counter', ClickCounter);
-</script>
+
+window.customElements.define('user-card', UserCard);
