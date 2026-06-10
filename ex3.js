@@ -1,51 +1,66 @@
+// 1. Sum of multiples of a OR b in list l
 let listEuler1 = (a, b, l) => {
-  let sum = 0;
-  for (let i = 0; i < l.length; i++) {
-    if (l[i] % a === 0 || l[i] % b === 0) {
-      sum += l[i];
+    let sum = 0;
+    for (let x of l) {
+        if (x % a === 0 || x % b === 0) {
+            sum += x;
+        }
     }
-  }
-  return sum;
-}
+    return sum;
+};
 
+// 2. Sum of multiples of ANY number in list a found in list l
 let listEuler2 = (a, l) => {
-  let sum = 0;
-  for (let i = 0; i < l.length; i++) {
-    if (l[i] % a[0] === 0 || l[i] % a[1] === 0) {
-      sum += l[i];
+    let sum = 0;
+    for (let x of l) {
+        for (let n of a) {
+            if (x % n === 0) {
+                sum += x;
+                break;
+            }
+        }
     }
-  }
-  return sum;
-}
+    return sum;
+};
 
+// 3. Same logic as #2 but for a bigger list
 let listEuler3 = (a, l) => {
-  let sum = 0;
-  for (let i = 0; i < l.length; i++) {
-    for (let j = 0; j < a.length; j++) {
-      if (l[i] % a[j] === 0) {
-        sum += l[i];
-        break;
-      }
+    let sum = 0;
+    for (let x of l) {
+        for (let n of a) {
+            if (x % n === 0) {
+                sum += x;
+                break;
+            }
+        }
     }
-  }
-  return sum;
-}
+    return sum;
+};
 
+// Button functions
 let eulerlist = () => {
-  a = 2;
-  b = 3;
-  l = [1, 2, 3, 4, 5, 6, 7, 9, 10, 10, 10];
-  alert('Sum of multiples of ' + a + ' or ' + b + ' in list: ' + listEuler1(a, b, l));
-}
+    let a = parseInt(document.getElementById('a1').value);
+    let b = parseInt(document.getElementById('b1').value);
+    let l = document.getElementById('l1').value.split(',').map(Number);
+
+    alert("Sum = " + listEuler1(a, b, l));
+};
 
 let euler2Lists = () => {
-  a = [2, 3];
-  l = [1, 2, 3, 4, 5, 6, 7, 9, 10, 10, 10];
-  alert('Sum of multiples of list a in list l: ' + listEuler2(a, l));
-}
+    let a = document.getElementById('a2').value.split(',').map(Number);
+    let l = document.getElementById('l2').value.split(',').map(Number);
+
+    if (a.length !== 2) {
+        alert('Please enter exactly 2 values for list a.');
+        return;
+    }
+
+    alert("Sum = " + listEuler2(a, l));
+};
 
 let euler2Lists1 = () => {
-  a = [2, 3, 5];
-  l = [1, 2, 3, 4, 5, 6, 7, 9, 10, 10, 10];
-  alert('Sum of multiples of list a in list l: ' + listEuler3(a, l));
-}
+    let a = document.getElementById('a3').value.split(',').map(Number);
+    let l = document.getElementById('l3').value.split(',').map(Number);
+
+    alert("Sum = " + listEuler3(a, l));
+};
