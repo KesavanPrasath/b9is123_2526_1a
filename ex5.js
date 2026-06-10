@@ -1,27 +1,27 @@
-    let parse=(i)=>{
-      o=parseInt(i)
-      if (isNaN(o))
-        throw("NaN");
-      return o;
+function processvalue(str) {
+    if (!str.includes(':')) {
+        return "corrupt : " + str;
     }
     
-//Create a modified version of ex4 that prepends "corrupt" where an error occurs
+    let parts = str.split(':');
+    let factors = parts[0].split(" ").map(Number);
+    let multiples = parts[1].split(" ").map(Number);
+    
+    let sum = 0;
+    for (let i = 0; i < multiples.length; i++) {
+        for (let j = 0; j < factors.length; j++) {
+            if (multiples[i] % factors[j] === 0) {
+                sum += multiples[i];
+                break;
+            }
+        }
+    }
+    
+    return sum + " : " + str;
+}
 
-//Examples ()
-// 2 3 5 67
-// corrupt : 2 3 5 67
-
-//Actually this one will not result in an error unless you throw one as in parse(i) above:
-// 3 5 hello: 1 2 3 4 5 6 7 8 9
-// corrupt : 3 5 hello: 1 2 3 4 5 6 7 8 9
-
-//Create a further version that will output the answer omitting corrupted values
-//or "corrupt" if it cannot be resolved
-
-// 3 5 hello: 1 2 3 4 5 6 7 8 9
-// 23 : 3 5 hello: 1 2 3 4 5 6 7 8 9
-
-//this cannot be fixed - actually this is the only one that will throw errors
-// 2 3 5 67
-// corrupt : 2 3 5 67
-
+function checkCorrupt() {
+    let input = document.getElementById('corruptInput').value;
+    let result = processvalue(input);
+    document.getElementById('corruptResult').textContent = result;
+}
