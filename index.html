@@ -1,65 +1,80 @@
-<HTml>
-    <head>
-        <script src="ex1.js"></script>
-        <script src="ex2.js"></script>
-        <script src="ex3.js"></script>
-        <script src="ex7.js"></script>
-    </head>
-    <body>
-        <h1>Exercise 1</h1>
-        <p>        <input type="text" id="weight">
-        <!--//replace check function.-->
-        <button onclick="check()">Check Baggage</button></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercise</title>
+</head>
+<body>
 
-<p>
-        <input type="text" id="removed" style='display:none;'>
-        <!--//replace remove function.-->
-        <button id='remB' onclick="remove()" style='display:none;'>Remove this much baggage (kg)</button>
+  <!-- Exercise 1: Baggage Weight Check -->
+  <h2>Exercise 1: Baggage Weight Check</h2>
+  <input type="number" id="weightInput" placeholder="Enter baggage weight in kg" />
+  <button onclick="checkBaggage()">Check Weight</button>
+  
+  <!-- Exercise 2: Sum of Multiples -->
 
-</p>
+  <h2>Exercise 2:</h2>
+  <h2>Sum of multiples of 3 or 5 below 1000</h2>
+  <button onclick="showResult()">Show Result</button>
 
-<h1>Exercise 2</h1>
-    <p><button onclick="euler1()">Press for solution to project Euler</button>
-</p>
+  
+  <h2>Sum of Multiples - User Input</h2>
+  <input type="number" id="aInput" placeholder="Enter a" />
+  <input type="number" id="bInput" placeholder="Enter b" />
+  <input type="number" id="nInput" placeholder="Enter n" />
+  <button onclick="sumMultiples()">Calculate Sum</button>
 
-<p>
-       <label for="a:">A</label> <input type="text" id="a">
-        <label for="b:">B</label><input type="text" id="b">
-       <label for="n:">N</label> <input type="text" id="n">
+  <!-- Exercise 3: List Sum -->
+  <h2>Exercise 3: Euler List Functions</h2>
+  
+  <h3>Euler 1: Sum of multiples of a || b in list l</h3>
+  <input type="number" id="a1" placeholder="Enter a" />
+  <input type="number" id="b1" placeholder="Enter b" />
+  <input type="text" id="l1" placeholder="Enter list l (comma separated)" />
+  <button onclick="eulerlist()">Run Euler 1</button>
+  
+  <h3>Euler 2: Sum of multiples in list a found in list l</h3>
+  <input type="text" id="a2" placeholder="Enter 2 values for list a, comma separated" />
+  <input type="text" id="l2" placeholder="Enter list l (comma separated)" />
+  <button onclick="euler2Lists()">Run Euler 2</button>
+  
+  <h3>Euler 3: Sum of multiples in list a found in list l (bigger)</h3>
+  <input type="text" id="a3" placeholder="Enter list a (comma separated)" />
+  <input type="text" id="l3" placeholder="Enter list l (comma separated)" />
+  <button onclick="euler2Lists1()">Run Euler 3</button>
 
-</p>
-    <p><button onclick="eulerCustom()">Press for custom sum of multiples</button> 
-        Find the sum of multiples of a or b less than n, where a,b and n are integer parameters
+  <!-- Exercise 4: result : factors : multiples -->
+  <h2>Exercise 4: result : factors : multiples</h2>
+  <input type="text" id="factorsinput" placeholder="Enter factors : multiples (space separated)" />
+  <button onclick="printresult()">Calculate Result</button>
+  <p id="resultval"></p>
 
- <h1>Exercise 3</h1>
-<p>
-Sum of multiples of a or b in list l.
-       <label for="a:">A</label> <input type="text" id="a1"><br>
-        <label for="b:">B</label><input type="text" id="b1"><br>
-       <label for="l:">L</label> <input type="text" id="l">
+  <!-- Exercise 5: Display "corrupt" where an error occurs -->
+  <h2>Exercise 5: Error Handling - 3 Cases</h2>  
+  <input type="text" id="corruptInput" placeholder="Enter data to check (e.g., 3 5:1 2 3 4 5 6 7 8 9)" />
+  <button onclick="checkCorrupt()">Check for Corruption</button>
+  <p id="corruptResult"></p>
 
-</p>
-    <p><button onclick="eulerlist()">Press for solution to project Euler</button>
-</p>
+  <!-- Exercise 6: GitHub Most Forked Repo -->
+  <h2>Exercise 6: GitHub Repo with Most Forks</h2>
+  <input type="text" id="username" placeholder="Enter GitHub username (e.g., docker)" />
+  <button onclick="findMostForked()">Find Most Forked Repo</button>
+  <p id="repoResult"></p>
 
-<p>
+  <script src="ex1.js"></script>
+  <script src="ex2.js"></script>
+  <script src="ex3.js"></script>
+  <script src="ex4.js"></script>
+  <script src="ex5.js"></script>
+  <script src="ex6.js"></script>
  
-    Part 2: compute the sum of multiples of elements in list a, found in list l. List a is of length 2
-    <br>
-    Part 3: compute the sum of multiples of elements in list a, found in list l. List a may be any length
-       <label for="aList:">A</label> <input type="text" id="aList">
-        <label for="mList:">L</label> <input type="text" id="mList">
-
-</p>
-    <p><button onclick="euler2Lists()">Press for custom sum of multiples</button>
-    <p><button onclick="euler2Lists1()">Press for custom sum of multiples</button>
-<user-card name="John Doe" avatar="https://randomuser.me/api/portraits/men/1.jpg">
-    <div slot="email">johndoe@gmail.com</div>
-    <div slot="phone">555-555-5555</div>
+ <user-card name="Tiju Thomas Payyampallil" avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiP9XI2MJfHU9J7qZKc6o8oHWz6BrDxBhMGfj90Sy4Fw&s&ec=121691717.jpg">
+    <div slot="email">tijuire@gmail.com</div>
+    <div slot="phone">599-890-1234</div>
   </user-card>
-  <user-card name="Jane Doe" avatar="https://randomuser.me/api/portraits/women/1.jpg">
-    <div slot="email">janedoe@gmail.com</div>
-    <div slot="phone">333-333-3333</div>
+  <user-card name="Christeena Joy" avatar="https://passport-photo.online/_optimized/prepare3.42b48b3d-opt-1920.WEBP">
+    <div slot="email">christeena@gmail.com</div>
+    <div slot="phone">566-666-3033</div>
   </user-card>
-    </body>
-</HTml>
+  <script src="ex7.js"></script>
+</body>
+</html>
